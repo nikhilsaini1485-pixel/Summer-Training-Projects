@@ -1,0 +1,25 @@
+# create a class calculator by using methods for aadition subtraction , multiplacition and division use objects to perform mathematically operations
+class Calculator:
+  def __init__(self, num1, num2):
+    self.num1 = num1
+    self.num2 = num2
+  def addition(self):
+    print(self.num1 + self.num2)
+  def subtraction(self):
+    print(self.num1 - self.num2)
+  def multiplication(self):
+    print(self.num1 * self.num2)
+  def division(self):
+    print(self.num1 / self.num2)
+
+
+def display():
+   print(addition.self)
+   print( subtraction.self)
+   print(multiplication.self)
+   print( division.self)
+c1 = Calculator(20,10)
+c1.addition()
+c1.subtraction()
+c1.multiplication()
+c1.division()
