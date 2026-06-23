@@ -1,0 +1,40 @@
+class Vehicle:
+    def __init__(self, rent_250km, extra_rate):
+        self.rent_250km = rent_250km
+        self.extra_rate = extra_rate
+
+    def calculate_rent(self, km):
+        if km <= 250:
+            return self.rent_250km
+        else:
+            extra_km = km - 250
+            return self.rent_250km + (extra_km * self.extra_rate)
+
+
+class Bike(Vehicle):
+    pass
+
+
+class Car(Vehicle):
+    pass
+
+
+class Bus(Vehicle):
+    pass
+
+
+# Creating objects
+bike = Bike(2000, 5)   # ₹2000 for 250 km, ₹5/km extra
+car = Car(5000, 12)    # ₹5000 for 250 km, ₹12/km extra
+bus = Bus(7000, 20)    # ₹7000 for 250 km, ₹20/km extra
+
+# User input
+bike_km = int(input("Enter Bike KM: "))
+car_km = int(input("Enter Car KM: "))
+bus_km = int(input("Enter Bus KM: "))
+
+# Calculate rent
+print("\nRENT DETAILS")
+print("Bike Rent = ₹", bike.calculate_rent(bike_km))
+print("Car Rent  = ₹", car.calculate_rent(car_km))
+print("Bus Rent  = ₹", bus.calculate_rent(bus_km))
