@@ -1,0 +1,97 @@
+
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def __str__(self):
+        return self.name
+
+
+class Student(Person):
+    def __init__(self, name, marks):
+        super().__init__(name)
+        self.marks = marks
+
+    def get_grade(self):
+        if self.marks >= 90:
+            return "A"
+        elif self.marks >= 75:
+            return "B"
+        elif self.marks >= 50:
+            return "C"
+        else:
+            return "F"
+
+    def __str__(self):
+        return self.name + "," + str(self.marks) + "," + self.get_grade()
+
+
+class Teacher(Person):
+    def __init__(self, name, subject):
+        super().__init__(name)
+        self.subject = subject
+
+    def __str__(self):
+        return self.name + "," + self.subject
+
+
+class Course:
+    def __init__(self, course_name):
+        self.course_name = course_name
+
+    def __str__(self):
+        return self.course_name
+
+
+file = "records.txt"
+
+
+def save_record(obj):
+    with open(file, "a") as f:
+        f.write(str(obj) + "\n")
+
+
+def view_records():
+    try:
+        with open(file, "r") as f:
+            print("\n--- Records ---")
+            print(f.read())
+    except FileNotFoundError:
+        print("No records found.")
+
+
+while True:
+    print("\n1.Add Student")
+    print("2.Add Teacher")
+    print("3.Add Course")
+    print("4.View Records")
+    print("5.Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        name = input("Student name: ")
+        marks = int(input("Marks: "))
+        s = Student(name, marks)
+        save_record(s)
+
+    elif choice == "2":
+        name = input("Teacher name: ")
+        subject = input("Subject: ")
+        t = Teacher(name, subject)
+        save_record(t)
+
+    elif choice == "3":
+        c = input("Course name: ")
+        course = Course(c)
+        save_record(course)
+
+    elif choice == "4":
+        view_records()
+
+    elif choice == "5":
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid choice")
