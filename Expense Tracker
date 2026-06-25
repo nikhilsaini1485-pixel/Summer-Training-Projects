@@ -1,0 +1,52 @@
+
+
+file = "expenses.txt"
+
+def add_expense():
+    try:
+        category = input("Enter category: ")
+        amount = float(input("Enter amount: "))
+
+        with open(file, "a") as f:
+            f.write(category + "," + str(amount) + "\n")
+
+        print("Expense added.")
+
+    except ValueError:
+        print("Invalid amount!")
+
+def view_summary():
+    try:
+        summary = {}
+
+        with open(file, "r") as f:
+            for line in f:
+                category, amount = line.strip().split(",")
+                summary[category] = summary.get(category, 0) + float(amount)
+
+        print("\nExpense Summary:")
+        for category, total in summary.items():
+            print(category, ":", total)
+
+    except FileNotFoundError:
+        print("No expense file found.")
+
+while True:
+    print("\n1.Add Expense")
+    print("2.View Summary")
+    print("3.Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        add_expense()
+
+    elif choice == "2":
+        view_summary()
+
+    elif choice == "3":
+        print("Thank you!")
+        break
+
+    else:
+        print("Invalid choice")
