@@ -1,0 +1,29 @@
+
+
+def calculate_grade(marks):
+    if marks >= 90:
+        return "A"
+    elif marks >= 75:
+        return "B"
+    elif marks >= 50:
+        return "C"
+    else:
+        return "F"
+
+try:
+    with open("students.csv", "r") as f:
+        lines = f.readlines()
+
+    with open("results.csv", "w") as f:
+        f.write("Name,Marks,Grade\n")
+
+        for line in lines:
+            name, marks = line.strip().split(",")
+            grade = calculate_grade(int(marks))
+
+            f.write(name + "," + marks + "," + grade + "\n")
+
+    print("Results saved in results.csv")
+
+except FileNotFoundError:
+    print("students.csv file not found")
