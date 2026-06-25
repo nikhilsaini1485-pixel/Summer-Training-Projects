@@ -1,0 +1,65 @@
+
+
+file = "books.csv"
+
+def add_book():
+    name = input("Enter book name: ")
+    with open(file, "a") as f:
+        f.write(name + "\n")
+    print("Book added.")
+
+def search_book():
+    try:
+        with open(file, "r") as f:
+            books = f.readlines()
+
+        name = input("Enter book name to search: ")
+
+        if name + "\n" in books:
+            print("Book found.")
+        else:
+            print("Book not found.")
+
+    except FileNotFoundError:
+        print("File not found.")
+
+def remove_book():
+    try:
+        with open(file, "r") as f:
+            books = f.readlines()
+
+        name = input("Enter book name to remove: ")
+
+        with open(file, "w") as f:
+            for book in books:
+                if book.strip() != name:
+                    f.write(book)
+
+        print("Book removed.")
+
+    except FileNotFoundError:
+        print("File not found.")
+
+while True:
+    print("\n1.Add Book")
+    print("2.Search Book")
+    print("3.Remove Book")
+    print("4.Exit")
+
+    choice = input("Enter choice: ")
+
+    if choice == "1":
+        add_book()
+
+    elif choice == "2":
+        search_book()
+
+    elif choice == "3":
+        remove_book()
+
+    elif choice == "4":
+        print("Thank you!")
+        break
+
+    else:
+        print("Invalid choice")
